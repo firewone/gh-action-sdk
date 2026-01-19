@@ -1,4 +1,4 @@
-name: Build mwan3 IPK for ImmortalWRT 24.10.4
+name: Build mwan3 IPK for ImmortalWRT
 
 on:
   workflow_dispatch:
@@ -15,10 +15,10 @@ jobs:
       - name: Build Paket
         uses: immortalwrt/gh-action-sdk@master
         env:
-          ARCH: mipsel_24kc
+          ARCH: mipsel_24kc               # Match opkg print-architecture lu (mipsel_24kc)
           PACKAGES: mwan3 luci-app-mwan3 iptables-nft ip6tables-nft kmod-ipt-nat kmod-ipt-conntrack-extra
-          EXTRA_FEEDS: packages|https://github.com/immortalwrt/packages.git^openwrt-24.10
-          V: s   # Ubah ke s (silent) atau 99 buat log super detail kalau masih error
+          EXTRA_FEEDS: packages|https://github.com/immortalwrt/packages.git   # Tanpa ^branch, pakai master
+          V: s
           BUILD_LOG: 1
 
       - name: Upload Paket
