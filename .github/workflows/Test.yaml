@@ -1,0 +1,31 @@
+name: Build mwan3 IPK for ImmortalWRT 24.10.4
+
+on:
+  workflow_dispatch:  # Ini biar bisa trigger manual
+  push:
+    branches:
+      - master  # Trigger pas push commit
+
+jobs:
+  build:
+    name: Build ramips/mt7621
+    runs-on: ubuntu-latest  # OS GitHub runner
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Ambil full history repo
+
+      - name: Build Paket
+        uses: immortalwrt/gh-action-sdk@master  # Pakai action resmi
+        env:
+          ARCH: ramips/mt7621  # Arsitektur Mi 4A Gigabit lu
+          PACKAGES: mwan3 luci-app-mwan3  # Paket yang mau di-build (space-separated, tambah luci kalau butuh)
+          EXTRA_FEEDS: packages  # Optional: nama feed di mana mwan3 ada (default packages)
+          V: 1  # Verbosity: 1 buat log lebih detail (bantu debug kalau error)
+          BUILD_LOG: 1  # Simpan log build di artifact
+
+      - name: Upload Paket
+        uses: actions/upload-artifact@v2
+        with:
+          name: ramips-mt7621-packages  # Nama artifact
+          path: bin/packages/ramips/mt7621/packages/*.ipk  # Lokasi hasil .ipk
