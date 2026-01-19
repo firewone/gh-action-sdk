@@ -25,7 +25,7 @@ jobs:
           BUILD_LOG: 1  # Simpan log build di artifact
 
       - name: Upload Paket
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: ramips-mt7621-packages  # Nama artifact
           path: bin/packages/ramips/mt7621/packages/*.ipk  # Lokasi hasil .ipk
