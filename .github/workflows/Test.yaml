@@ -16,11 +16,10 @@ jobs:
         uses: immortalwrt/gh-action-sdk@master
         env:
           ARCH: mipsel_24kc
-          PACKAGES: mwan3 luci-app-mwan3 iptables-nft ip6tables-nft kmod-ipt-nat kmod-ipt-conntrack-extra
+          PACKAGES: mwan3 luci-app-mwan3 iptables-nft ip6tables-nft kmod-ipt-nat kmod-ipt-conntrack-extra kmod-nf-nat6 kmod-nf-conntrack6
           EXTRA_FEEDS: src-git packages https://github.com/immortalwrt/packages.git
           V: s
           BUILD_LOG: 1
-          # NO_DEFAULT_FEEDS: 0   # uncomment kalau perlu disable default, tapi coba tanpa dulu
 
       - name: Upload Paket
         uses: actions/upload-artifact@v4
