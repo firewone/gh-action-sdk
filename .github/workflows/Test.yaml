@@ -1,4 +1,4 @@
-name: Build mwan3 IPK for ImmortalWRT
+name: Build mwan3 IPK ImmortalWRT
 
 on:
   workflow_dispatch:
@@ -15,12 +15,12 @@ jobs:
       - name: Build Paket
         uses: immortalwrt/gh-action-sdk@master
         env:
-          ARCH: mipsel_24kc               # Match opkg print-architecture lu (mipsel_24kc)
+          ARCH: mipsel_24kc
           PACKAGES: mwan3 luci-app-mwan3 iptables-nft ip6tables-nft kmod-ipt-nat kmod-ipt-conntrack-extra
-          EXTRA_FEEDS: packages|https://github.com/immortalwrt/packages.git   # Tanpa ^branch, pakai master
+          EXTRA_FEEDS: src-git packages https://github.com/immortalwrt/packages.git
           V: s
           BUILD_LOG: 1
-          NO_DEFAULT_FEEDS: 1
+          # NO_DEFAULT_FEEDS: 0   # uncomment kalau perlu disable default, tapi coba tanpa dulu
 
       - name: Upload Paket
         uses: actions/upload-artifact@v4
