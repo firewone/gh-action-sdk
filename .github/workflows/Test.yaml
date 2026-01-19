@@ -18,7 +18,7 @@ jobs:
       - name: Build Paket
         uses: immortalwrt/gh-action-sdk@master  # Pakai action resmi
         env:
-          ARCH: ramips/mt7621  # Arsitektur Mi 4A Gigabit lu
+          ARCH: mipsel_24kc  # Arsitektur Mi 4A Gigabit lu
           PACKAGES: mwan3 luci-app-mwan3  # Paket yang mau di-build (space-separated, tambah luci kalau butuh)
           EXTRA_FEEDS: packages  # Optional: nama feed di mana mwan3 ada (default packages)
           V: 1  # Verbosity: 1 buat log lebih detail (bantu debug kalau error)
