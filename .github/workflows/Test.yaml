@@ -20,6 +20,7 @@ jobs:
           EXTRA_FEEDS: packages|https://github.com/immortalwrt/packages.git   # Tanpa ^branch, pakai master
           V: s
           BUILD_LOG: 1
+          NO_DEFAULT_FEEDS: 1
 
       - name: Upload Paket
         uses: actions/upload-artifact@v4
